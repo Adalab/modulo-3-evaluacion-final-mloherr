@@ -1,0 +1,28 @@
+.characterData {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    &__figure {
+        max-width: 300px;
+        margin-bottom: 0;
+
+        img {
+            width: 100%;
+        }
+
+    }
+
+    &__name {
+        background-color: rgb(236, 70, 173);
+        color: black;
+        max-width: 300px;
+    }
+
+    &__specie {
+        background-color: rgb(236, 70, 173);
+        color: black;
+        max-width: 300px;
+    }
+}

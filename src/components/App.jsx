@@ -1,6 +1,7 @@
 import '../scss/App.scss';
 // import PropTypes from "prop-types";
 import getCharactersFromAPI from '../services/getCharactersFromAPI';
+import localStorage from '../services/localStorage';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, matchPath } from 'react-router-dom';
 import Header from './Header';
@@ -10,7 +11,9 @@ import Filters from './Filters';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [filterName, setFilterName] = useState('');
+  const [filterName, setFilterName] = useState(
+    localStorage.get('userSearch') || ''
+  );
 
   useEffect(() => {
     getCharactersFromAPI().then((charactersData) => {
@@ -20,6 +23,7 @@ function App() {
 
   const handleSearchName = (value) => {
     setFilterName(value);
+    localStorage.set('userSearch', value);
   };
 
   const filteredCharacters = characters.filter((character) => {
