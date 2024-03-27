@@ -9,6 +9,7 @@ import Filters from './Filters';
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [filterName, setFilterName] = useState('');
 
   useEffect(() => {
     getCharactersFromAPI().then((charactersData) => {
@@ -16,21 +17,24 @@ function App() {
     });
   }, []);
 
+  const handleSearchName = (value) => {
+    setFilterName(value);
+  };
+
+  const filteredCharacters = characters.filter((character) => {
+    return character.name.toLowerCase().includes(filterName.toLowerCase());
+  });
+
   return (
     <>
       <Header />
       <main>
-        <Filters />
-        <CharacterList charactersData={characters} />
+        <Filters onChangeName={handleSearchName} valueName={filterName} />
+        <CharacterList charactersData={filteredCharacters} />
         <CharacterDetail />
       </main>
     </>
   );
 }
-
-// NombreDeMiComponente.propTypes = {
-//   nombreDeMiPropDeTipoStringOpcional: PropTypes.string,
-//   nombreDeMiPropDeTipoStringObligatoria: PropTypes.string.isRequired,
-// };
 
 export default App;

@@ -1,0 +1,21 @@
+.header {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    &__title{
+        color: white;
+        font-weight: bold;
+    }
+
+    &__logotipe {
+        max-width: 150px;
+
+        & img {
+            width: 100%;
+        }
+    }
+}

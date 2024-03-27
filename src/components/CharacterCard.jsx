@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function CharacterCard({ characterData }) {
   return (
     <li>
@@ -7,5 +9,8 @@ function CharacterCard({ characterData }) {
     </li>
   );
 }
+CharacterCard.propTypes = {
+  characterData: PropTypes.object.isRequired,
+};
 
 export default CharacterCard;
