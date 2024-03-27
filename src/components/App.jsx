@@ -14,10 +14,15 @@ function App() {
   const [filterName, setFilterName] = useState(
     localStorage.get('userSearch') || ''
   );
+  const [filterSpecies, setFilterSpecies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getCharactersFromAPI().then((charactersData) => {
       setCharacters(charactersData);
+      setIsLoading(false);
+      console.log(isLoading);
     });
   }, []);
 
@@ -26,21 +31,34 @@ function App() {
     localStorage.set('userSearch', value);
   };
 
-  const filteredCharacters = characters.filter((character) => {
-    return character.name.toLowerCase().includes(filterName.toLowerCase());
-  });
+  const handleSearchSpecies = (value) => {
+    setFilterSpecies([...filterSpecies, value]);
+  };
 
-  // Saber ID de la ruta del PJ
+  const filteredCharacters = characters
+    .filter((character) => {
+      return character.name.toLowerCase().includes(filterName.toLowerCase());
+    })
+    .filter((character) => {
+      if (filterSpecies.length === 0) {
+        return true;
+      } else {
+        return filterSpecies.includes(character.species);
+      }
+    });
 
   const { pathname } = useLocation();
   const characterDetailRoute = matchPath('/character/:idCharacter', pathname);
   const idCharacter = characterDetailRoute
     ? characterDetailRoute.params.idCharacter
     : null;
-  //Buscar el Pj cuyo ID sea = al id de la ruta
-  const characterDetailData = characters.find(
+  const characterDetailData = characters?.find(
     (character) => character.id === parseInt(idCharacter)
   );
+
+  if (isLoading) {
+    return <p>Cargando...</p>;
+  }
 
   return (
     <>
@@ -54,8 +72,16 @@ function App() {
                 <Filters
                   onChangeName={handleSearchName}
                   valueName={filterName}
+                  onChangeSpecies={handleSearchSpecies}
+                  valueSpecies={filterSpecies}
                 />
-                <CharacterList charactersData={filteredCharacters} />
+                {filteredCharacters.length === 0 ? (
+                  <div>
+                    {`No hay ningún personaje que coincida con ${filterName}`}
+                  </div>
+                ) : (
+                  <CharacterList charactersData={filteredCharacters} />
+                )}
               </>
             }
           />

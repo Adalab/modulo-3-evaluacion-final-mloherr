@@ -1,15 +1,9 @@
-.form {
+.filtersSection {
     display: flex;
-    flex-direction: column;
     padding: 10px;
     justify-content: center;
     align-items: center;
-
-    &__label {
-        font-weight: bold;
-
-        &--input {
-            width: 300px;
-        }
-    }
 }
+
+
+

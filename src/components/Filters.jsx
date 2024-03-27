@@ -1,24 +1,25 @@
 import '../scss/components/Filters.scss';
 import PropTypes from 'prop-types';
+import FilterByName from './FilterByName';
+import FilterBySpecies from './FilterBySpecies';
 
-function Filters({ onChangeName, valueName }) {
-  const handleChange = (ev) => {
+function Filters({
+  onChangeName,
+  valueName,
+  onChangeSpecies,
+  valueSpecies,
+  species,
+}) {
+  const handleSubmit = (ev) => {
     ev.preventDefault();
-    onChangeName(ev.target.value);
   };
   return (
-    <form className="form">
-      <label className="form__label" htmlFor="name">
-        Search characters by name:
-      </label>
-      <input
-        className="form__label--input"
-        type="text"
-        name="name"
-        value={valueName}
-        onChange={handleChange}
-      />
-    </form>
+    <section className="filtersSection">
+      <form className="filtersSection__form" onSubmit={handleSubmit}>
+        <FilterByName onChangeName={onChangeName} valueName={valueName} />
+        <FilterBySpecies onChangeSpecies={onChangeSpecies} />
+      </form>
+    </section>
   );
 }
 

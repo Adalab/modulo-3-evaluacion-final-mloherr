@@ -9,16 +9,16 @@ function CharacterDetail({ characterDetailData }) {
       <div className="sectionDetailData__containerData">
         <figure className="sectionDetailData__containerData--image">
           <img
-            src={characterDetailData.picture}
-            alt={characterDetailData.name}
+            src={characterDetailData?.picture}
+            alt={characterDetailData?.name}
           />
         </figure>
         <div className="sectionDetailData__containerData--info">
-          <h4>{characterDetailData.name}</h4>
-          <p>Status: {characterDetailData.status}</p>
-          <p>Species: {characterDetailData.species}</p>
-          <p>Origin: {characterDetailData.origin}</p>
-          <p>Episodes: {characterDetailData.episodes}</p>
+          <h4>{characterDetailData?.name}</h4>
+          <p>Status: {characterDetailData?.status}</p>
+          <p>Species: {characterDetailData?.species}</p>
+          <p>Origin: {characterDetailData?.origin}</p>
+          <p>Episodes: {characterDetailData?.episodes}</p>
         </div>
       </div>
     </section>
