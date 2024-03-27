@@ -8,7 +8,7 @@ const getCharactersFromAPI = () => {
           name: character.name,
           picture: character.image,
           species: character.species,
-          origin: character.origin,
+          origin: character.origin.name,
           episodes: character.episode.length,
           status: character.status,
         };
