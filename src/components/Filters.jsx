@@ -6,9 +6,10 @@ import FilterBySpecies from './FilterBySpecies';
 function Filters({
   onChangeName,
   valueName,
-  onChangeSpecies,
-  valueSpecies,
-  species,
+  onChangeHuman,
+  onChangeAlien,
+  filterSpeciesAlienChecked,
+  filterSpeciesHumanChecked,
 }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -17,7 +18,12 @@ function Filters({
     <section className="filtersSection">
       <form className="filtersSection__form" onSubmit={handleSubmit}>
         <FilterByName onChangeName={onChangeName} valueName={valueName} />
-        <FilterBySpecies onChangeSpecies={onChangeSpecies} />
+        <FilterBySpecies
+          filterSpeciesHumanChecked={filterSpeciesHumanChecked}
+          filterSpeciesAlienChecked={filterSpeciesAlienChecked}
+          onChangeAlien={onChangeAlien}
+          onChangeHuman={onChangeHuman}
+        />
       </form>
     </section>
   );

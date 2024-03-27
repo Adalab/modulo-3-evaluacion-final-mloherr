@@ -15,14 +15,14 @@ function App() {
     localStorage.get('userSearch') || ''
   );
   const [filterSpecies, setFilterSpecies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [filterSpeciesAlienChecked, setFilterSpeciesAlienChecked] =
+    useState(false);
+  const [filterSpeciesHumanChecked, setFilterSpeciesHumanChecked] =
+    useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     getCharactersFromAPI().then((charactersData) => {
       setCharacters(charactersData);
-      setIsLoading(false);
-      console.log(isLoading);
     });
   }, []);
 
@@ -31,8 +31,21 @@ function App() {
     localStorage.set('userSearch', value);
   };
 
-  const handleSearchSpecies = (value) => {
-    setFilterSpecies([...filterSpecies, value]);
+  const handleChangeHuman = (value) => {
+    setFilterSpeciesHumanChecked(value);
+    if (value) {
+      setFilterSpecies([...filterSpecies, 'Human']);
+    } else {
+      setFilterSpecies(filterSpecies.filter((species) => species !== 'Human'));
+    }
+  };
+  const handleChangeAlien = (value) => {
+    setFilterSpeciesAlienChecked(value);
+    if (value) {
+      setFilterSpecies([...filterSpecies, 'Alien']);
+    } else {
+      setFilterSpecies(filterSpecies.filter((species) => species !== 'Alien'));
+    }
   };
 
   const filteredCharacters = characters
@@ -52,13 +65,9 @@ function App() {
   const idCharacter = characterDetailRoute
     ? characterDetailRoute.params.idCharacter
     : null;
-  const characterDetailData = characters?.find(
+  const characterDetailData = characters.find(
     (character) => character.id === parseInt(idCharacter)
   );
-
-  if (isLoading) {
-    return <p>Cargando...</p>;
-  }
 
   return (
     <>
@@ -72,8 +81,10 @@ function App() {
                 <Filters
                   onChangeName={handleSearchName}
                   valueName={filterName}
-                  onChangeSpecies={handleSearchSpecies}
-                  valueSpecies={filterSpecies}
+                  onChangeHuman={handleChangeHuman}
+                  onChangeAlien={handleChangeAlien}
+                  valueCheckBoxAliens={filterSpeciesAlienChecked}
+                  valueCheckBoxHumans={filterSpeciesHumanChecked}
                 />
                 {filteredCharacters.length === 0 ? (
                   <div>

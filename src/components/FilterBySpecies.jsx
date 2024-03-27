@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
 import '../scss/components/FilterBySpecies.scss';
 
-function FilterBySpecies({ onChangeSpecies }) {
-  const handleChangeSpecies = (ev) => {
-    onChangeSpecies(ev.target.value);
+function FilterBySpecies({
+  filterSpeciesAlienChecked,
+  filterSpeciesHumanChecked,
+  onChangeHuman,
+  onChangeAlien,
+}) {
+  const handleChangeHuman = (ev) => {
+    onChangeHuman(ev.currentTarget.checked);
   };
+
+  const handleChangeAlien = (ev) => {
+    onChangeAlien(ev.currentTarget.checked);
+  };
+
   return (
     <>
       <h3>Filtrar por especie:</h3>
@@ -16,7 +26,8 @@ function FilterBySpecies({ onChangeSpecies }) {
         className="label__input"
         value="Human"
         id="humanSpecie"
-        onChange={handleChangeSpecies}
+        onChange={handleChangeHuman}
+        checked={filterSpeciesHumanChecked}
       />
       <label className="label" htmlFor="alienSpecie">
         Alien
@@ -26,15 +37,11 @@ function FilterBySpecies({ onChangeSpecies }) {
         className="label__input"
         value="Alien"
         id="alienSpecie"
-        onChange={handleChangeSpecies}
+        onChange={handleChangeAlien}
+        checked={filterSpeciesAlienChecked}
       />
     </>
   );
 }
-
-FilterBySpecies.propTypes = {
-  onChangeSpecies: PropTypes.func.isRequired,
-  valueSpecies: PropTypes.string.isRequired,
-};
 
 export default FilterBySpecies;

@@ -13,7 +13,15 @@ const getCharactersFromAPI = () => {
           status: character.status,
         };
       });
-      return parsedCharacters;
+      const orderedParsedCharacters = parsedCharacters.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+      });
+      return orderedParsedCharacters;
     });
 };
 
