@@ -1,4 +1,5 @@
 import '../scss/components/Filters.scss';
+import PropTypes from 'prop-types';
 
 function Filters({ onChangeName, valueName }) {
   const handleChange = (ev) => {
@@ -19,5 +20,10 @@ function Filters({ onChangeName, valueName }) {
     </form>
   );
 }
+
+Filters.propTypes = {
+  onChangeName: PropTypes.func.isRequired,
+  valueName: PropTypes.string.isRequired,
+};
 
 export default Filters;
