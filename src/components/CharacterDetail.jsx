@@ -15,7 +15,10 @@ function CharacterDetail({ characterDetailData }) {
         </figure>
         <div className="sectionDetailData__containerData--info">
           <h4>{characterDetailData?.name}</h4>
-          <p>Status: {characterDetailData?.status}</p>
+          <p>
+            Status:{' '}
+            {characterDetailData?.status === 'Alive' ? 'Alive: 💃' : 'Dead: ☠️'}
+          </p>
           <p>Species: {characterDetailData?.species}</p>
           <p>Origin: {characterDetailData?.origin}</p>
           <p>Episodes: {characterDetailData?.episodes}</p>
