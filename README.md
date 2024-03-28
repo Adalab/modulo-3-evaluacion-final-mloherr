@@ -41,7 +41,7 @@ npm run dev
 
 Alternativamente, puedes acceder a la aplicación web desplegada en GitHub Pages. Simplemente visita el siguiente enlace:
 
-Búsqueda de Personajes de Rick & Morty
+https://beta.adalab.es/modulo-3-evaluacion-final-mloherr/
 
 ## Funcionalidades
 
