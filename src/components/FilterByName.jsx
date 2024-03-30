@@ -6,18 +6,18 @@ function FilterByName({ onChangeName, valueName }) {
     onChangeName(ev.target.value);
   };
   return (
-    <>
-      <label className="label" htmlFor="name">
+    <div>
+      <label className="labelName" htmlFor="name">
         Search characters by name:
       </label>
       <input
-        className="label__input"
+        className="labelName_input"
         type="text"
         name="name"
         value={valueName}
         onChange={handleChange}
       />
-    </>
+    </div>
   );
 }
 

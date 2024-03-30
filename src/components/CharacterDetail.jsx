@@ -4,7 +4,9 @@ function CharacterDetail({ characterDetailData }) {
   return (
     <section className="sectionDetailData">
       <div className="sectionDetailData__returnHome">
-        <Link to={'/'}>Volver a Inicio</Link>
+        <Link to={'/'} className="sectionDetailData__returnHome--link">
+          Volver a Inicio
+        </Link>
       </div>
       <div className="sectionDetailData__containerData">
         <figure className="sectionDetailData__containerData--image">
