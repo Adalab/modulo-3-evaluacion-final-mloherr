@@ -99,7 +99,11 @@ function App() {
           <Route
             path="/character/:idCharacter"
             element={
-              <CharacterDetail characterDetailData={characterDetailData} />
+              characterDetailData ? (
+                <CharacterDetail characterDetailData={characterDetailData} />
+              ) : (
+                <p>El personaje que buscas no existe 🥲 </p>
+              )
             }
           />
         </Routes>
